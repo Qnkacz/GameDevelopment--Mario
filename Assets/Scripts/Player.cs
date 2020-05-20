@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float moveSpeed;
     public Rigidbody2D rb;
     public bool grounder = false;
     public float jumpForce;
@@ -15,15 +14,11 @@ public class Player : MonoBehaviour
         Jump();
         if(Input.GetKey(KeyCode.D))
         {
-            
-                rb.AddForce(new Vector2(5f, 0), ForceMode2D.Force);
-            
+         rb.AddForce(new Vector2(5f, 0), ForceMode2D.Force);
         }
         if (Input.GetKey(KeyCode.A))
         {
-
             rb.AddForce(new Vector2(-5f, 0), ForceMode2D.Force);
-
         }
 
     }
@@ -39,6 +34,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             boss.bs.GameOver();
+        }
+        if(collision.gameObject.tag=="todestroy")
+        {
+            Destroy(collision.gameObject.transform.parent.gameObject);
         }
         if(collision.gameObject.tag=="Finish")
         {

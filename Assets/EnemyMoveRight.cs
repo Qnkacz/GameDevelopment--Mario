@@ -8,7 +8,10 @@ public class EnemyMoveRight : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        me.Goleft = false;
-        me.Goright = true;
+        if (collision.gameObject.tag == "brick")
+        {
+            me.Goleft = false;
+            me.Goright = true;
+        }
     }
 }
