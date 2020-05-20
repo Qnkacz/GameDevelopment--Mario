@@ -5,44 +5,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public BoxCollider2D BodyCollider;
     public bool grounder = false;
     public float jumpForce;
     public float maxspeed;
+    public bool goingRight;
     
-    void LateUpdate()
+    void Update()
     {
         Jump();
-        if(Input.GetKey(KeyCode.D))
-        {
-         rb.AddForce(new Vector2(5f, 0), ForceMode2D.Force);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            rb.AddForce(new Vector2(-5f, 0), ForceMode2D.Force);
-        }
-
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag=="enemy")
-        {
-            boss.bs.GameOver();
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "enemy")
-        {
-            boss.bs.GameOver();
-        }
-        if(collision.gameObject.tag=="todestroy")
-        {
-            Destroy(collision.gameObject.transform.parent.gameObject);
-        }
-        if(collision.gameObject.tag=="Finish")
-        {
-            boss.bs.Victory();
-        }
+        move();
     }
     void Jump()
     {
@@ -54,9 +26,32 @@ public class Player : MonoBehaviour
             }
         }
     }
-   
-    public static void GameOver()
+    public void move()
     {
-        Time.timeScale = 0;
+        if (rb.velocity.x > 0) goingRight = true;
+        else goingRight = false;
+        if (Input.GetKey(KeyCode.D))
+        {
+            
+            if(grounder==false && goingRight==false)
+            {
+                rb.AddForce(new Vector2(25f, 0), ForceMode2D.Force);
+            }
+            else
+            {
+                rb.AddForce(new Vector2(5f, 0), ForceMode2D.Force);
+            }
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            if (grounder == false && goingRight == true)
+            {
+                rb.AddForce(new Vector2(-25f, 0), ForceMode2D.Force);
+            }
+            else
+            {
+                rb.AddForce(new Vector2(-5f, 0), ForceMode2D.Force);
+            }
+        }
     }
 }

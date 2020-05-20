@@ -68,6 +68,7 @@
     <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\EnemyMoveLeft.cs" />
     <Compile Include="Assets\EnemyMoveRight.cs" />
+    <Compile Include="Assets\hitenemy.cs" />
     <Compile Include="Assets\roof.cs" />
     <Compile Include="Assets\Scripts\Grounded.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />

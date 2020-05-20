@@ -15,8 +15,8 @@ public class boss : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0;
-        Time.timeScale = Time.timeScale * Time.deltaTime*2;
+        Time.timeScale = Time.timeScale * Time.deltaTime;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
         cv.SetActive(true);
     }
     public void Restart()

@@ -13,20 +13,7 @@ public class Enemy : MonoBehaviour
         Rootparent = this.gameObject.transform.parent.gameObject;
         rb = Rootparent.GetComponent<Rigidbody2D>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Player")
-        {
-            Destroy(Rootparent);
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(Rootparent);
-        }
-    }
+   
     private void LateUpdate()
     {
         
